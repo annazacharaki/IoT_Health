@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Health Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="toggleSidebar" class="text-white fixed top-2 left-2 z-30 bg-opal-dark rounded p-2">
+        <span>☰</span>
+    </button>
+    <!-- Sidebar -->
+    <div id="sidebar" class="text-white">
+        <nav>
+            <a href="/" class="bg-opal-light">Home</a>
+            <a href="/temperature">Temperature</a>
+            <a href="/spo2">SpO2</a>
+            <a href="/ecg">ECG</a>
+        </nav>
+    </div>
+    <!-- Main Content -->
+    <div id="main">
+		<h1 class="text-3xl font-bold text-opal-dark">.</h1>
+        <h1 class="text-3xl font-bold text-opal-dark">Welcome to IoT Health Dashboard</h1>
+        <p class="mt-4 text-gray-600">Select a measurement from the sidebar to view data.</p>
+    </div>
+</body>
+</html>

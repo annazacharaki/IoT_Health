@@ -1,0 +1,86 @@
+/* Opal-inspired colors */
+:root {
+    --opal-dark: #2C3E50;    /* Dark blue-gray for sidebar */
+    --opal-light: #6366F1;   /* Light indigo for highlights */
+    --opal-accent: #E2E8F0;  /* Light gray for backgrounds */
+}
+
+/* Sidebar */
+#sidebar {
+    background-color: var(--opal-dark);
+    height: 100%;
+    width: 250px; 
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: width 0.5s ease-in-out;
+    padding-top: 60px;
+}
+
+/* Sidebar links */
+#sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: #818181;
+    display: block;
+    transition: color 0.3s;
+}
+
+#sidebar a:hover, #sidebar a.bg-opal-light {
+    color: #f1f1f1;
+    background-color: var(--opal-light);
+}
+
+/* Menu toggle button */
+#toggleSidebar {
+    z-index: 30;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Main content */
+#main {
+    transition: margin-left 0.5s ease-in-out;
+    padding: 16px;
+	/*dz */
+	margin-left: 250px; /* Πρόσθεσε ή άλλαξε σε 250px */
+}
+
+body {
+    background-color: var(--opal-accent);
+    font-family: 'Lato', sans-serif;
+}
+
+h1, h2 {
+    color: var(--opal-dark);
+}
+
+table thead {
+    background-color: var(--opal-light);
+}
+
+/* Responsive adjustments */
+@media screen and (max-height: 450px) {
+    #sidebar {
+        padding-top: 15px;
+    }
+    #sidebar a {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    #main {
+        padding: 1rem;
+		margin-left: 0; /* Χωρίς margin για κινητά */
+    }
+    #sidebar {
+        width: 0; /* Κλειστό για κινητά */
+    }
+	h1 {
+        font-size: 1.5rem;
+    }
+	
+}
