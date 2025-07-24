@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IoT Health Dashboard</title>
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('-translate-x-full');
+    }
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100">
+
+  <!-- Toggle Button πάντα ορατό -->
+  <button onclick="toggleSidebar()"
+          class="fixed top-4 left-4 z-50 p-2 bg-gray-800 text-white rounded">
+    ☰
+  </button>
+
+  <!-- Sidebar -->
+  <aside id="sidebar"
+         class="fixed inset-y-0 left-0 z-40 w-56 bg-gray-800 text-white p-4
+                transform -translate-x-full transition-transform duration-200
+                md:translate-x-0">
+    <nav class="mt-12 flex flex-col space-y-2">
+      <a href="/"           class="block hover:bg-gray-700 p-2 rounded">Home</a>
+      <a href="/temperature"class="block hover:bg-gray-700 p-2 rounded">Temperature</a>
+      <a href="/spo2"       class="block hover:bg-gray-700 p-2 rounded">SpO₂</a>
+      <a href="/ecg"        class="block hover:bg-gray-700 p-2 rounded">ECG</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="md:ml-56 p-6">
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">Welcome to IoT Health Dashboard</h1>
+    <p class="text-gray-600 mb-8">Select a measurement from the sidebar to view data.</p>
+
+    <section class="flex flex-col items-center">
+      <p class="text-lg font-semibold mb-4">Pick a sensor to start measurements.</p>
+      <div class="relative w-full max-w-xs sm:max-w-sm md:max-w-md">
+        <svg viewBox="-50 0 260 220" xmlns="http://www.w3.org/2000/svg" class="w-full">
+          <!-- Humanoid figure -->
+          <g stroke="black" stroke-width="2" fill="none">
+            <circle cx="60" cy="20" r="12" />
+            <rect x="45" y="34" width="30" height="50" rx="15" />
+            <rect x="30" y="40" width="12" height="45" rx="6" />
+            <rect x="78" y="40" width="12" height="45" rx="6" />
+            <rect x="48" y="84" width="12" height="45" rx="6" />
+            <rect x="60" y="84" width="12" height="45" rx="6" />
+          </g>
+          <!-- Sensor dots + lines -->
+          <circle cx="40" cy="58" r="4" fill="#F87171" />
+          <line x1="40" y1="58" x2="-15" y2="52" stroke="#F87171" stroke-width="2" />
+          <circle cx="45" cy="38" r="4" fill="#A5B4FC" />
+          <circle cx="75" cy="38" r="4" fill="#A5B4FC" />
+          <circle cx="74" cy="74" r="4" fill="#A5B4FC" />
+          <line x1="75" y1="38" x2="147" y2="57" stroke="#A5B4FC" stroke-width="2" />
+          <circle cx="86" cy="84" r="4" fill="#6EE7B7" />
+          <line x1="86" y1="84" x2="162" y2="102" stroke="#6EE7B7" stroke-width="2" />
+        </svg>
+        <!-- Buttons absolute την ίδια θέση με τα lines -->
+        <form method="post" action="/run_mcp9808" class="absolute" style="top:49%; left:8%;">
+          <button class="bg-red-600 text-white text-xs px-2 py-1 rounded">MCP9808</button>
+        </form>
+        <form method="post" action="/run_ecg" class="absolute" style="top:18%; left:75%;">
+          <button class="bg-indigo-600 text-white text-xs px-2 py-1 rounded">ECG</button>
+        </form>
+        <form method="post" action="/run_max30102" class="absolute" style="top:66%; left:75%;">
+          <button class="bg-green-600 text-white text-xs px-2 py-1 rounded">MAX30102</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

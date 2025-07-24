@@ -1,0 +1,56 @@
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Health Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="toggleSidebar" class="text-white fixed top-2 left-2 z-30 bg-opal-dark rounded p-2">
+        <span>☰</span>
+    </button>
+    <!-- Sidebar -->
+    <div id="sidebar" class="text-white">
+        <nav>
+            <a href="/" class="bg-opal-light">Home</a>
+            <a href="/temperature">Temperature</a>
+            <a href="/spo2">SpO2</a>
+            <a href="/ecg">ECG</a>
+        </nav>
+    </div>
+    <!-- Main Content -->
+    <div id="main">
+		<h1 class="text-3xl font-bold text-opal-dark">.</h1>
+        <h1 class="text-3xl font-bold text-opal-dark">Welcome to IoT Health Dashboard</h1>
+        <p class="mt-4 text-gray-600">Select a measurement from the sidebar to view data.</p>
+    </div>
+</body>
+        <p class="mt-4 text-gray-600">Select a measurement from the sidebar to view data.</p>
+        <div class="flex justify-center mt-8">
+            <svg width="220" height="340" viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg">
+                <!-- Humanoid figure -->
+                <g stroke="black" stroke-width="2" fill="none">
+                    <circle cx="60" cy="20" r="12" />
+                    <rect x="45" y="34" width="30" height="50" rx="15" />
+                    <rect x="30" y="40" width="12" height="45" rx="6" />
+                    <rect x="78" y="40" width="12" height="45" rx="6" />
+                    <rect x="48" y="84" width="12" height="45" rx="6" />
+                    <rect x="60" y="84" width="12" height="45" rx="6" />
+                </g>
+                <!-- MCP9808 sensor (armpit) -->
+                <circle cx="40" cy="58" r="4" fill="#FF0000" />
+                <text x="44" y="60" font-size="6" fill="#2C3E50">MCP</text>
+                <!-- ECG electrodes -->
+                <circle cx="45" cy="38" r="4" fill="#6366F1" />
+                <circle cx="75" cy="38" r="4" fill="#6366F1" />
+                <circle cx="74" cy="74" r="4" fill="#6366F1" />
+                <text x="78" y="76" font-size="6" fill="#2C3E50">ECG</text>
+                <!-- MAX30102 sensor (finger) -->
+                <circle cx="86" cy="84" r="4" fill="#32CD32" />
+                <text x="90" y="86" font-size="6" fill="#2C3E50">MAX</text>
+            </svg>
+        </div>
+    </div>
+</body>
+</html>

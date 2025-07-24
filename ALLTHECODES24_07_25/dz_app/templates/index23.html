@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IoT Health Dashboard</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+  <script>
+    function toggleSidebar() {
+      document
+        .getElementById('sidebar')
+        .classList.toggle('-translate-x-full');
+    }
+
+    // Εμφανίζει notification για 3″
+    function showNotification(message) {
+      const notif = document.getElementById('notification');
+      notif.textContent = message;
+      notif.classList.remove('hidden');
+      setTimeout(() => {
+        notif.classList.add('hidden');
+      }, 3000);
+    }
+
+    // Περιγραφές ανά αισθητήρα
+    const sensorDescriptions = {
+      'MCP9808':  'Θερμοκρασία Σώματος',
+      'ECG':      'Ηλεκτροκαρδιογράφημα',
+      'MAX30102': 'Κορεσμός Οξυγόνου Spo2'
+    };
+
+    // Καλεί το endpoint και, όταν ολοκληρωθεί, εμφανίζει το κατάλληλο μήνυμα
+    function runSensor(name, endpoint) {
+      fetch(endpoint, { method: 'POST' })
+        .then(response => {
+          if (response.ok) {
+            const desc = sensorDescriptions[name] || '';
+            showNotification(
+              `Η μέτρηση για τον αισθητήρα ${name} ολοκληρώθηκε! (${desc})`
+            );
+          } else {
+            showNotification(`Σφάλμα κατά τη μέτρηση ${name}`);
+          }
+        })
+        .catch(() => {
+          showNotification(`Σφάλμα δικτύου για ${name}`);
+        });
+    }
+  </script>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Notification -->
+  <div id="notification"
+       class="fixed top-4 inset-x-0 mx-auto bg-green-500 text-white text-center py-2 px-4 rounded hidden z-50">
+  </div>
+
+  <!-- Toggle Button -->
+  <button
+    onclick="toggleSidebar()"
+    class="fixed top-4 left-4 z-50 p-2 bg-gray-800 text-white rounded">
+    ☰
+  </button>
+
+  <!-- Sidebar -->
+  <aside
+    id="sidebar"
+    class="fixed inset-y-0 left-0 z-40 w-56 bg-gray-800 text-white p-4
+           transform -translate-x-full transition-transform duration-200
+           md:translate-x-0 overflow-y-auto pt-16">
+    <nav class="flex flex-col space-y-2 px-4">
+      <a href="/"            class="block hover:bg-gray-700 p-2 rounded">Home</a>
+      <a href="/temperature" class="block hover:bg-gray-700 p-2 rounded">Temperature</a>
+      <a href="/spo2"        class="block hover:bg-gray-700 p-2 rounded">SpO₂</a>
+      <a href="/ecg"         class="block hover:bg-gray-700 p-2 rounded">ECG</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="md:ml-56 pl-16 p-6">
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">
+      Welcome to IoT Health Dashboard
+    </h1>
+    <p class="text-gray-600 mb-8">
+      Select a measurement from the sidebar to view data.
+    </p>
+
+    <section class="flex flex-col items-center">
+      <p class="text-lg font-semibold mb-4">
+        Pick a sensor to start measurements.
+      </p>
+      <div class="relative w-full max-w-xs sm:max-w-sm md:max-w-md">
+        <svg viewBox="-50 0 260 220" xmlns="http://www.w3.org/2000/svg" class="w-full">
+          <!-- Humanoid figure -->
+          <g stroke="black" stroke-width="2" fill="none">
+            <circle cx="60" cy="20" r="12" />
+            <rect x="45" y="34" width="30" height="50" rx="15" />
+            <rect x="30" y="40" width="12" height="45" rx="6" />
+            <rect x="78" y="40" width="12" height="45" rx="6" />
+            <rect x="48" y="84" width="12" height="45" rx="6" />
+            <rect x="60" y="84" width="12" height="45" rx="6" />
+          </g>
+
+          <!-- MCP9808 sensor (red) -->
+          <circle cx="40" cy="58" r="4" fill="#EF4444" />
+          <line x1="40" y1="58" x2="-15" y2="110" stroke="#EF4444" stroke-width="2"/>
+
+          <!-- ECG electrodes (purple) -->
+          <circle cx="45" cy="38" r="4" fill="#6366F1" />
+          <circle cx="75" cy="38" r="4" fill="#6366F1" />
+          <circle cx="74" cy="74" r="4" fill="#6366F1" />
+          <line x1="45" y1="38" x2="147" y2="57" stroke="#6366F1" stroke-width="2"/>
+          <line x1="75" y1="38" x2="147" y2="57" stroke="#6366F1" stroke-width="2"/>
+          <line x1="74" y1="74" x2="147" y2="57" stroke="#6366F1" stroke-width="2"/>
+
+          <!-- MAX30102 sensor (green) -->
+          <circle cx="86" cy="84" r="4" fill="#10B981" />
+          <line x1="86" y1="84" x2="162" y2="145" stroke="#10B981" stroke-width="2"/>
+        </svg>
+
+        <!-- Sensor Buttons -->
+        <button
+          type="button"
+          onclick="runSensor('MCP9808', '/run_mcp9808')"
+          class="absolute bg-red-600 text-white text-xs px-2 py-1 rounded"
+          style="top:49%; left:8%;">MCP9808</button>
+
+        <button
+          type="button"
+          onclick="runSensor('ECG', '/run_ecg')"
+          class="absolute bg-indigo-600 text-white text-xs px-2 py-1 rounded"
+          style="top:20%; left:75%;">ECG</button>
+
+        <button
+          type="button"
+          onclick="runSensor('MAX30102', '/run_max30102')"
+          class="absolute bg-green-600 text-white text-xs px-2 py-1 rounded"
+          style="top:66%; left:75%;">MAX30102</button>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

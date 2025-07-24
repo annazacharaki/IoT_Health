@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IoT Health Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('hidden');
+    }
+  </script>
+</head>
+<body class="bg-gray-100 relative">
+
+  <!-- Toggle Button (πάντα ορατό) -->
+  <button onclick="toggleSidebar()"
+          class="text-white fixed top-2 left-2 z-30 bg-gray-800 rounded p-2">
+    <span>☰</span>
+  </button>
+
+  <!-- Sidebar -->
+  <div id="sidebar"
+       class="fixed top-0 left-0 h-full w-48 bg-gray-800 text-white p-4">
+    <nav class="flex flex-col space-y-2 mt-8">
+      <a href="/" class="hover:bg-gray-700 p-2 rounded">Home</a>
+      <a href="/temperature" class="hover:bg-gray-700 p-2 rounded">Temperature</a>
+      <a href="/spo2" class="hover:bg-gray-700 p-2 rounded">SpO2</a>
+      <a href="/ecg" class="hover:bg-gray-700 p-2 rounded">ECG</a>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <div class="p-6 ml-52 flex flex-col items-center justify-center min-h-screen">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2 text-center">
+      Welcome to IoT Health Dashboard
+    </h1>
+    <p class="mt-4 text-gray-600 text-center">
+      Select a measurement from the sidebar to view data.
+    </p>
+    <div class="flex flex-col items-center mt-8">
+      <p class="text-gray-800 font-semibold mb-2 text-center">
+        Pick a sensor to start measurements.
+      </p>
+      <svg class="w-full max-w-xs sm:max-w-sm md:max-w-md"
+           viewBox="-50 0 260 220"
+           xmlns="http://www.w3.org/2000/svg">
+        <!-- Humanoid figure -->
+        <g stroke="black" stroke-width="2" fill="none">
+          <circle cx="60" cy="20" r="12" />
+          <rect x="45" y="34" width="30" height="50" rx="15" />
+          <rect x="30" y="40" width="12" height="45" rx="6" />
+          <rect x="78" y="40" width="12" height="45" rx="6" />
+          <rect x="48" y="84" width="12" height="45" rx="6" />
+          <rect x="60" y="84" width="12" height="45" rx="6" />
+        </g>
+        <!-- MCP9808 sensor -->
+        <circle cx="40" cy="58" r="4" fill="#FF0000" />
+        <line x1="40" y1="58" x2="-15" y2="52" stroke="#FF0000" stroke-width="1" />
+        <foreignObject x="-45" y="44" width="60" height="20">
+          <form method="post" action="/run_mcp9808">
+            <button class="text-xs bg-red-600 text-white px-2 rounded">
+              MCP9808
+            </button>
+          </form>
+        </foreignObject>
+        <!-- ECG electrodes -->
+        <circle cx="45" cy="38" r="4" fill="#6366F1" />
+        <circle cx="75" cy="38" r="4" fill="#6366F1" />
+        <circle cx="74" cy="74" r="4" fill="#6366F1" />
+        <line x1="45" y1="38" x2="147" y2="57" stroke="#6366F1" stroke-width="1" />
+        <line x1="75" y1="38" x2="147" y2="57" stroke="#6366F1" stroke-width="1" />
+        <line x1="74" y1="74" x2="147" y2="57" stroke="#6366F1" stroke-width="1" />
+        <foreignObject x="122" y="49" width="60" height="20">
+          <form method="post" action="/run_ecg">
+            <button class="text-xs bg-indigo-600 text-white px-2 rounded">
+              ECG
+            </button>
+          </form>
+        </foreignObject>
+        <!-- MAX30102 sensor -->
+        <circle cx="86" cy="84" r="4" fill="#32CD32" />
+        <line x1="86" y1="84" x2="162" y2="102" stroke="#32CD32" stroke-width="1" />
+        <foreignObject x="122" y="94" width="80" height="20">
+          <form method="post" action="/run_max30102">
+            <button class="text-xs bg-green-600 text-white px-2 rounded">
+              MAX30102
+            </button>
+          </form>
+        </foreignObject>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
