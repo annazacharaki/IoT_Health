@@ -106,8 +106,6 @@ The tunnel starts automatically at boot through systemd services.
 |------------------|------------------|------------------|
 | ![Device Overview](IoT_Health_codes/dz_app/static/img/device_overview.jpg) | ![Sensors Close-up](IoT_Health_codes/dz_app/static/img/sensors_closeup.jpg) | ![Extra View 1](IoT_Health_codes/dz_app/static/img/sensors_extra1.jpg) |
 
-![Extra View 2](IoT_Health_codes/dz_app/static/img/sensors_extra2.jpg)
-
 
 
 ---
