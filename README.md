@@ -106,8 +106,6 @@ The tunnel starts automatically at boot through systemd services.
 |----------------|----------------|----------------|
 | ![Hardware](assets/hardware.jpg) | ![Dashboard](assets/dashboard.jpg) | ![ECG](assets/ecg_signal.jpg) |
 
-*(Replace the image paths with your actual files inside `/assets/`)*
-
 
 ---
 
