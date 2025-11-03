@@ -1,0 +1,10 @@
+
+/* --- minimal, non-breaking additions --- */
+#toggleSidebar { z-index: 9999 !important; } /* keep burger always tappable */
+
+/* Push main content to the right of a 14rem (w-56) sidebar on desktop only */
+@media (min-width: 768px) {
+  body.with-sidebar-desktop #main {
+    margin-left: 14rem; /* matches Tailwind w-56 */
+  }
+}
