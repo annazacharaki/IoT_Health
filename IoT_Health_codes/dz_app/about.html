@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - IoT Health Dashboard</title>
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  <!-- Sidebar toggle script -->
+  <script defer src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</head>
+<body>
+  <!-- Menu Toggle Button -->
+  <button id="toggleSidebar" class="text-white fixed top-2 left-2 z-30 bg-opal-dark rounded p-2">
+    <span>☰</span>
+  </button>
+
+  <!-- Sidebar -->
+  <aside
+    id="sidebar"
+    class="fixed inset-y-0 left-0 z-40 w-56 bg-gray-800 text-white p-4
+           transform -translate-x-full transition-transform duration-200
+           md:translate-x-0 overflow-y-auto pt-16"
+  >
+    <nav class="flex flex-col space-y-2 px-4">
+      <a href="/"            class="block hover:bg-gray-700 p-2 rounded">Home</a>
+      <a href="/temperature" class="block hover:bg-gray-700 p-2 rounded">Temperature</a>
+      <a href="/spo2"        class="block hover:bg-gray-700 p-2 rounded">SpO₂</a>
+      <a href="/ecg"         class="block hover:bg-gray-700 p-2 rounded">ECG</a>
+      <a href="/qa"          class="block hover:bg-gray-700 p-2 rounded">AI MediTaker</a>
+      <a href="/about"       class="block bg-opal-light hover:bg-gray-700 p-2 rounded">About us</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main id="main" class="md:ml-56 pl-16 p-6">
+    <!-- Spacer to align with other pages -->
+    <h1 class="text-3xl font-bold text-opal-dark">.</h1>
+    <h1 class="text-3xl font-bold text-opal-dark">About IoT_Health</h1>
+
+    <!-- Hero / Intro -->
+    <section class="mt-4">
+      <p class="text-lg text-gray-700">
+        Smart, portable, and secure system for monitoring vital signs.
+      </p>
+    </section>
+
+    <!-- Images -->
+    <section class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <figure class="bg-white rounded-lg shadow p-3">
+        <img src="/static/img/device_overview.jpg" alt="IoT_Health device overview" class="w-full h-auto max-h-[28rem] object-contain rounded" />
+        <figcaption class="mt-3 text-sm text-gray-600">
+          Figure 1: IoT_Health device with Raspberry Pi 5 and connected sensors.
+        </figcaption>
+      </figure>
+      <div class="grid grid-cols-1 gap-4">
+        <figure class="bg-white rounded-lg shadow p-3">
+          <img src="/static/img/sensors_closeup.jpg" alt="Close-up of sensors" class="w-full h-auto max-h-48 object-contain rounded" />
+          <figcaption class="mt-2 text-sm text-gray-600">
+            Figure 2: Close-up of MAX30102 sensor (SpO2).
+          </figcaption>
+        </figure>
+        <figure class="bg-white rounded-lg shadow p-3">
+          <img src="/static/img/sensors_extra1.jpg" alt="Additional sensor view 1" class="w-full h-auto max-h-48 object-contain rounded" />
+          <figcaption class="mt-2 text-sm text-gray-600">
+            Figure 3: Close-up of MCP9808 sensor (Temperature).
+          </figcaption>
+        </figure>
+        <figure class="bg-white rounded-lg shadow p-3">
+          <img src="/static/img/sensors_extra2.jpg" alt="Additional sensor view 2" class="w-full h-auto max-h-48 object-contain rounded" />
+          <figcaption class="mt-2 text-sm text-gray-600">
+            Figure 4: Close-up of ECG electrodes and connections.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="mt-6 bg-white p-6 rounded-lg shadow">
+      <h2 class="text-2xl font-semibold text-gray-800">What is IoT_Health?</h2>
+      <p class="mt-4 leading-7 text-gray-700">
+        <strong>IoT_Health</strong> is a complete, cost-effective system that monitors in real time
+        body temperature, blood oxygen saturation (SpO₂), and ECG signals. It is based on a
+        <em>Raspberry Pi 5</em>, records data in a local database, and displays them through a
+        responsive web app. The architecture emphasizes <strong>security</strong> (AES-128-GCM encryption),
+        <strong>portability</strong> (powerbank ~11.5 hours), and <strong>usability</strong>. It also integrates an
+        <strong> embedded AI LLM</strong> enabling natural language queries directly on-device while ensuring privacy and responsiveness.
+      </p>
+    </section>
+
+    <!-- Key Features -->
+    <section class="mt-6">
+      <h2 class="text-2xl font-semibold text-gray-800">Key Features</h2>
+      <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="font-semibold text-lg">Sensors</h3>
+          <p class="mt-2 text-gray-700 text-sm">
+            MCP9808 (Temperature), MAX30102 (SpO₂), AD8232 (ECG).
+          </p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="font-semibold text-lg">Data Security</h3>
+          <p class="mt-2 text-gray-700 text-sm">
+            AES-128-GCM encryption and local storage for privacy.
+          </p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="font-semibold text-lg">Web App</h3>
+          <p class="mt-2 text-gray-700 text-sm">
+            Responsive UI for mobile/desktop with easy monitoring of measurements.
+          </p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="font-semibold text-lg">Portability</h3>
+          <p class="mt-2 text-gray-700 text-sm">
+            Operates with a powerbank for ~11.5 hours.
+          </p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="font-semibold text-lg">AI Support</h3>
+          <p class="mt-2 text-gray-700 text-sm">
+            Natural language queries on the local database.
+          </p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="font-semibold text-lg">Scalability</h3>
+          <p class="mt-2 text-gray-700 text-sm">
+            Modular design for adding more sensors or cloud sync in the future.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why it matters -->
+    <section class="mt-6 bg-white p-6 rounded-lg shadow">
+      <h2 class="text-2xl font-semibold text-gray-800">Why It Matters</h2>
+      <p class="mt-4 text-gray-700 leading-7">
+        IoT_Health aims to bring health monitoring technologies closer to the user with
+        <strong>low cost</strong> and <strong>high reliability</strong>. It can support scenarios of
+        <em>telemedicine</em>, home care, and primary healthcare, especially in resource-limited environments.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
+
