@@ -1,0 +1,42 @@
+
+/* ===== Opal-inspired color utilities ===== */
+:root {
+  --opal-dark: #2C3E50;   /* Dark blue-gray */
+  --opal-light: #6366F1;  /* Indigo (matches Tailwind indigo-500-ish) */
+  --opal-accent: #E2E8F0; /* Light gray */
+}
+
+.bg-opal-dark { background-color: var(--opal-dark) !important; }
+.text-opal-dark { color: var(--opal-dark) !important; }
+.bg-opal-light { background-color: var(--opal-light) !important; }
+.text-opal-light { color: var(--opal-light) !important; }
+
+/* ===== Sidebar base ===== */
+#sidebar {
+  /* Tailwind handles position/transform; we just make sure it sits above content */
+  z-index: 40 !important;
+  background-color: #1f2937 !important; /* Tailwind bg-gray-800 */
+}
+
+/* Ensure the burger is always tappable above everything */
+#toggleSidebar {
+  z-index: 50 !important;
+}
+
+/* Mobile width for off-canvas sidebar */
+@media (max-width: 768px) {
+  #sidebar {
+    width: 250px !important;
+  }
+}
+
+/* Optional: nicer scroll inside sidebar */
+#sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.4) transparent;
+}
+#sidebar::-webkit-scrollbar { width: 8px; }
+#sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.35);
+  border-radius: 6px;
+}
