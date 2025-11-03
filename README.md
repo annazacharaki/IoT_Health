@@ -102,9 +102,12 @@ The tunnel starts automatically at boot through systemd services.
 
 ## Project Images
 
-| Hardware Setup | Web Dashboard | Signal Output |
-|----------------|----------------|----------------|
-| ![Hardware](assets/hardware.jpg) | ![Dashboard](assets/dashboard.jpg) | ![ECG](assets/ecg_signal.jpg) |
+| Device Overview | Sensors Close-up | Additional Views |
+|------------------|------------------|------------------|
+| ![Device Overview](dz_app/static/img/device_overview.jpg) | ![Sensors Close-up](dz_app/static/img/sensors_closeup.jpg) | ![Extra View 1](dz_app/static/img/sensors_extra1.jpg) |
+
+![Extra View 2](dz_app/static/img/sensors_extra2.jpg)
+
 
 
 ---
